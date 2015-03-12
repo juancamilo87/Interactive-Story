@@ -35,11 +35,17 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\css \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\index.html \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugin.xml \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\SQLitePlugin.coffee.md \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\SQLitePlugin.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\css\index.css \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\logo.png \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\index.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www\SQLitePlugin.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device\www \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device\www\device.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\AndroidManifest.xml \
