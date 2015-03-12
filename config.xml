@@ -13,5 +13,5 @@
 		<param name="android-package" value="org.pgsqlite.SQLitePlugin" />
 	</feature>
 	<plugin name="SQLitePlugin" value="org.pgsqlite.SQLitePlugin"/>
-    <feature name="Console"> <param name="ios-package" value="CDVLogger" />
+    <feature name="Console"> <param name="ios-package" value="CDVLogger" /> </feature>
 </widget>
