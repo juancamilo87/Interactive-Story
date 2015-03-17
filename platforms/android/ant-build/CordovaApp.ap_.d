@@ -42,6 +42,7 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\SQLiteP
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\css\index.css \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\logo.png \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\index.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\story_db.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www \
