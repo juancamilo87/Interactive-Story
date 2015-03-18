@@ -16,9 +16,13 @@
 			"video_url": "http://www.[...]",
 			"image_url": "http://www.[...]",
 			"audio_url": "http://www.[...]",
+			"instructions": "Instructions to make the interaction",
 			"interaction": {
 				"type": 1,
-				"info": "Information on the tag"
+				"info": "Information on the tag",
+				"instructions": "Search for [...]",
+				"feedback_right": "Perfect! You found it!",
+				"feedback_wrong": "Oops! Try again..."
 			}
 		},
 		{
@@ -30,7 +34,10 @@
 			"audio": "",
 			"interaction": {
 				"type": 2,
-				"info": "Information of the QR code"
+				"info": "Information of the QR code",
+				"instructions": "Search for [...]",
+				"feedbackurl_right": "http://www.[...]",
+				"feedbackurl_wrong": "http://www.[...]"
 			}
 		},
 		{
@@ -43,7 +50,10 @@
 			"interaction": {
 				"type": 3,
 				"latitude": 65.0506489,
-				"longitude": 25.4746943
+				"longitude": 25.4746943,
+				"instructions": "Search for [...]",
+				"feedback_right": "Perfect! You found it!",
+				"feedback_wrong": "Oops! Try again..."
 			}
 		},
 		{
@@ -55,7 +65,10 @@
 			"audio": "",
 			"interaction": {
 				"type": 4,
-				"phrase": "Phrase or word to spell check"
+				"phrase": "Phrase or word to spell check",
+				"instructions": "Search for [...]",
+				"feedback_right": "Perfect spelling!",
+				"feedback_wrong": "Oops! Try again..."
 			}
 		},
 		{
@@ -71,7 +84,9 @@
 				"correct_answer": "Correct answer",
 				"answer_1": "First wrong answer",
 				"answer_2": "Second wrong answer",
-				"answer_3": "Third wrong answer"
+				"answer_3": "Third wrong answer",
+				"feedback_right": "Perfect! You answer correctly!",
+				"feedback_wrong": "Oops! Try again..."
 			}
 		},
 		{
