@@ -1,8 +1,8 @@
 version = '1.1';
 
 ////yifei added here
-var story_log = null;
-var interaction_log = null;
+var story_log_json = null;
+var interaction_log_json = null;
 ////
 
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -103,8 +103,8 @@ function submit_logs(tx){
     ////Get story logs and interaction logs, then combine them together. 
     tx.executeSql('select * from story_log', [], success_get_story_log);
     tx.executeSql('select * from interaction_log', [], success_get_interaction_log);
-    ////use story_log to merge interaction_log, just send story_log
-    $.extend(story_log, interaction_log);
+    ////use story_log to merge interaction_log, just send story_log_json
+    $.extend(story_log_json, interaction_log_json);
     
     ////Send logs to server by HTTP, needed to be implement
     
@@ -120,10 +120,10 @@ function success_get_story_log(tx, res){
         var c_i = res.rows.item(i)["chapter_id"];
         var s_i = res.rows.item(i)["story_id"];
         var t = res.rows.item(i)["timestamp"];
-        var each_item = {"action": a, "status": s, "chapter_id": c_i, "story_id": s_i; "timestamp": t};
+        var each_item = {"action": a, "status": s, "chapter_id": c_i, "story_id": s_i, "timestamp": t};
         jsonObject["story_log"].push(each_item);
     }
-    story_log = jsonObject;    
+    story_log_json = jsonObject;    
 }
 
 //// Call back function, return query results of interaction logs (Yifei)
@@ -137,7 +137,7 @@ function success_get_interaction_log(tx, res){
         var each_item = {"interaction_type": a, "interaction_id": s, "interaction_status": c, "timestamp": t};
         jsonObject["interaction_log"].push(each_item);
     }
-    interaction_log = jsonObject;
+    interaction_log_json = jsonObject;
 }
 
 
