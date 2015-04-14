@@ -2,9 +2,8 @@ var resultDiv;
 
 document.addEventListener("deviceready", init, false);
 function init() {
-	document.querySelector("#startScan").addEventListener("touchend", scan(1,"This is the code"), false);
+	document.querySelector("#startScan").addEventListener("touchend", startScan, false);
 	resultDiv = document.querySelector("#results");
-
 }
 
 function startScan() {
@@ -29,14 +28,12 @@ function scan(interaction_id, message)
 		function (result) {
 			if(result.text == message)
 			{
-				alert("correct");
-				//give_feedback(interaction_id, 1);
-				//next_chapter();
+				give_feedback(interaction_id, 1);
+				next_chapter();
 			}
 			else
 			{
-				alert("incorrect");
-				//give_feedback(interaction_id, 0);
+				give_feedback(interaction_id, 0);
 			}
 		}, 
 		function (error) {

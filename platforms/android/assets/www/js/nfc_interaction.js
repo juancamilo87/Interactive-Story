@@ -39,12 +39,13 @@ function onNFC(nfcEvent)
     console.log(text_code);
     console.log(theMessage);
 
-    if(text_story != story)
+    /*if(text_story != story)
     {
         alert("Incorrect story");
         give_feedback(id, result);
     }
-    else if(text_code != theMessage)
+    else */
+    if(text_code != theMessage)
     {
         alert("Incorrect tag");
         give_feedback(id, result);
