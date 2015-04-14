@@ -78,6 +78,15 @@ h1 {
     text-align:center;
 }
 
+
+button {
+    
+    width: 100%;
+    
+    height: 30px;
+
+}
+
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;

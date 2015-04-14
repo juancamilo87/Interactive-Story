@@ -10,10 +10,18 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin$9.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\Util.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\phonegap\plugins\barcodescanner\BarcodeScanner.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\BuildConfig.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\CordovaApp.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$array.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$attr.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$color.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$dimen.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$drawable.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$id.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$layout.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$menu.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$raw.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$string.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R$xml.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\R.class \
@@ -26,3 +34,4 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\pgsqlite\SQLitePlugin$QueryType.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\pgsqlite\SQLitePlugin.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\dexedLibs\classes-7b72e6886bd6d97888c25662b6bce2f9.jar \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\dexedLibs\com.google.zxing.client.android.captureactivity-0952d0d0cbb2456954ec8bb2f1f3d355.jar \

@@ -21,3 +21,24 @@ function startScan() {
 	);
 
 }
+
+function scan(interaction_id, message)
+{
+	cordova.plugins.barcodeScanner.scan(
+		function (result) {
+			if(result.text == message)
+			{
+				give_feedback(interaction_id, 1);
+				next_chapter();
+			}
+			else
+			{
+				give_feedback(interaction_id, 0);
+			}
+		}, 
+		function (error) {
+			alert("Scanning failed: " + error);
+		}
+	);
+
+}

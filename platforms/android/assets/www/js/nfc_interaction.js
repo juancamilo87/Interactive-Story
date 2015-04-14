@@ -1,9 +1,13 @@
 var theMessage;
 var mimeType;
 var story;
+var id;
+var result;
 
-function startNFCInteraction(story_id, message)
+function startNFCInteraction(interaction_id, story_id, message)
 {
+    result = 0;
+    id = interaction_id;
     theMessage = message;
     story = story_id;
     mimeType = "text/is";
@@ -38,14 +42,18 @@ function onNFC(nfcEvent)
     if(text_story != story)
     {
         alert("Incorrect story");
+        give_feedback(id, result);
     }
     else if(text_code != theMessage)
     {
         alert("Incorrect tag");
+        give_feedback(id, result);
     }
     else
     {
-        alert("Correct tag");
+        result = 1;
+        next_chapter();
+        give_feedback(id, result);
         nfc.removeMimeTypeListener(mimeType, onNFC);
     }
     
