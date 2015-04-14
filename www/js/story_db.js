@@ -8,6 +8,7 @@ var interaction_log_json = null;
 document.addEventListener("deviceready", onDeviceReady, false);
 var db;
 function onDeviceReady() {
+    //startNFCInteraction("a story", "This is the code");
     db = window.sqlitePlugin.openDatabase({name: "stories.db"});
     var firstrun = window.localStorage.getItem('runned'); 
     if ( firstrun == null ) {

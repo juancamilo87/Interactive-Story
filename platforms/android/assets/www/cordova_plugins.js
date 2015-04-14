@@ -13,6 +13,11 @@ module.exports = [
         "clobbers": [
             "device"
         ]
+    },
+    {
+        "file": "plugins/com.chariotsolutions.nfc.plugin/www/phonegap-nfc.js",
+        "id": "com.chariotsolutions.nfc.plugin.NFC",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -20,7 +25,8 @@ module.exports.metadata =
 {
     "com.brodysoft.sqlitePlugin": "1.0.4",
     "org.apache.cordova.console": "0.2.13",
-    "org.apache.cordova.device": "0.3.0"
+    "org.apache.cordova.device": "0.3.0",
+    "com.chariotsolutions.nfc.plugin": "0.6.1"
 }
 // BOTTOM OF METADATA
 });
