@@ -143,7 +143,8 @@ var app = {
 
 	},
 	errorCB: function(err) {
-		alert("error code is " + err.code);
+		alert("error code is " + err.message);
+		//return false;
 	},
 	successCB: function() {
 		window.localStorage.setItem('runned', '1');
@@ -165,6 +166,9 @@ var app = {
 	},
 	populateChaptersByStoryId: function(tx, story_id) {
 		tx.executeSql("SELECT * FROM chapters WHERE story_id='"+story_id+"'", [], function(tx, results) {
+			
+			//alert( "length is " + results.rows.length );
+			
             if(results.rows.length > 0) {
            	 
            	 //alert( "chapter count is " + results.rows.length );
@@ -180,8 +184,10 @@ var app = {
            		 temp_html+= '</ul>';
            	 }
          
-           	 var storyElement = document.getElementById('chapters_list');
+           	 var storyElement = document.getElementById('chapter_list');
            	 storyElement.innerHTML = temp_html;
+           	 
+           	 alert( temp_html );
            	 
            	 
             } else {
@@ -189,6 +195,8 @@ var app = {
             }
             
         });
+		
+		//return true;
 	},
 	loadChapterByChapterId: function(chapterId) {
 		var databaseName 		= "StoryEditor";
