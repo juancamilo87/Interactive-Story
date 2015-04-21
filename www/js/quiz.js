@@ -1,4 +1,7 @@
 function check_quiz(correct_answer){
+	
+	//alert( correct_answer );
+	
 	var form = document.getElementById("question_form");
 	var radios = form.elements["question1"];
 	var val=0;
@@ -14,5 +17,5 @@ function check_quiz(correct_answer){
 		is_correct = true;
 	}
 	    
-	document.write(is_correct);
+	alert(is_correct);
 }

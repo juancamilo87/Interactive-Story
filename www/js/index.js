@@ -95,9 +95,9 @@ var app = {
         
         
         var chapterJson = [
-		                   { 	"story_id":"1", "name":"apple chapter 1", "body" : "test body of story 1", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1" },
-		                   { 	"story_id":"2", "name":"apple chapter 2", "body" : "test body of story 2", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1" },
-		                   { 	"story_id":"3", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1"}
+		                   { 	"story_id":"1", "name":"apple chapter 1", "body" : "test body of story 1", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
+		                   { 	"story_id":"2", "name":"apple chapter 2", "body" : "test body of story 2", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
+		                   { 	"story_id":"3", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4"}
 		                  ]; 
 
 		var storyJson = [
@@ -111,7 +111,7 @@ var app = {
  	        });
          
          $.each(chapterJson, function(idx, objChapter) {
-                tx.executeSql("INSERT INTO chapters (story_id, number, name, body, video_path, image_path, audio_path, interaction_id) VALUES (?,?,?,?,?,?,?,?)", [objChapter.story_id, objChapter.story_id, objChapter.name, objChapter.body, objChapter.video_url,objChapter.image_url,objChapter.audio_url,objChapter.interaction_id]);  
+                tx.executeSql("INSERT INTO chapters (story_id, number, name, body, video_path, image_path, audio_path, interaction_id) VALUES (?,?,?,?,?,?,?,?)", [objChapter.story_id, objChapter.story_id, objChapter.name, objChapter.body, objChapter.video_url,objChapter.image_url,objChapter.audio_url,objChapter.interaction]);  
         });
          
          tx.executeSql("SELECT * FROM stories", [], function(tx, results) {
@@ -139,6 +139,32 @@ var app = {
              }
              
          });
+         
+         /*tx.executeSql("SELECT * FROM interaction_types", [], function(tx, results) {
+             if(results.rows.length > 0) {
+            	 
+            	 //alert( "total inteactions are " + results.rows.length );
+            	 
+            	 var temp_html = "";
+            	 for( var i=0; i<results.rows.length; i++ ) {
+            		 temp_html+= '<ul data-role="listview" data-inset="true">';
+            		 temp_html+= '<li><a href="#story" id="load" onclick="app.loadChapterByStoryId(';
+            		 temp_html+= results.rows.item(i).story_id;
+            		 temp_html+= '); return true;">';
+            		 temp_html+= results.rows.item(i).name;
+            		 temp_html+= '</a></li>';
+            		 temp_html+= '</ul>';
+            	 }
+          
+            	 var storyElement = document.getElementById('story_list');
+            	 storyElement.innerHTML = temp_html;
+            	 
+            	 
+             } else {
+            	 alert("no length");
+             }
+             
+         });*/
         
 
 	},
@@ -213,6 +239,8 @@ var app = {
            	 
            	 //alert( "chapter count is " + results.rows.length );
            	 
+            var interactionId = "";
+            	
            	 var temp_html = "";
            	 for( var i=0; i<results.rows.length; i++ ) {
            		 temp_html+= '<p>';
@@ -223,12 +251,42 @@ var app = {
           		 temp_html+= results.rows.item(i).image_path;
           		 temp_html+= '" width="200" height="200" data-rel="external"/>';
           		 temp_html+= '</p>';
+          		 
+          		 //alert( "interaction id in the loop is" + results.rows.item(i).interaction_id );
+          		 
+          		interactionId+= results.rows.item(i).interaction_id;
            	 }
+           	
+           	var interaction_temp = "";
            	 
-           	 //alert(temp_html);
-           	 
-           	 var storyElement = document.getElementById('chapter_content');
-           	 storyElement.innerHTML = temp_html;
+           	if( interactionId == '4' ) {
+           		
+           		interaction_temp += '<input id="given_word" type="text" value="Hello"/>';
+           		interaction_temp += '<input id="typed_word" type="text"/>';
+           		interaction_temp += '<button type="button" onclick="check_word()"> Check';
+           		interaction_temp += '</button>';
+           		interaction_temp += '<br/>';
+           		interaction_temp += '<div id="result">';
+           		interaction_temp += ' </div>'
+           		
+           	} else if ( interactionId == '5' ) {
+           		interaction_temp += '<br/><br/><br/><br/>';
+           		interaction_temp += '<form id="question_form">';
+           		interaction_temp += '<input type="radio" name="question1" value="1" checked>Answer1';
+           		interaction_temp += '<input type="radio" name="question1" value="2">Answer2';
+           		interaction_temp += '<input type="radio" name="question1" value="3">Answer3';
+           		interaction_temp += '<input type="radio" name="question1" value="4">Answer4';
+           		interaction_temp += '</form>';
+           		interaction_temp += '<br/>';
+           		interaction_temp += '<br/>';
+           		interaction_temp += '<button type="button" onclick="check_quiz(1)">Check answer';
+           		interaction_temp += '</button>';
+           	}
+           	
+           	temp_html+= interaction_temp;
+           	
+           	var storyElement = document.getElementById('chapter_content');
+           	storyElement.innerHTML = temp_html;
            	 
            	 
             } else {
