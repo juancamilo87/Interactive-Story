@@ -97,7 +97,7 @@ var app = {
         var chapterJson = [
 		                   { 	"story_id":"1", "name":"apple chapter 1", "body" : "test body of story 1", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
 		                   { 	"story_id":"2", "name":"apple chapter 2", "body" : "test body of story 2", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
-		                   { 	"story_id":"3", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4"}
+		                   { 	"story_id":"3", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1"}
 		                  ]; 
 
 		var storyJson = [
@@ -267,7 +267,7 @@ var app = {
            		interaction_temp += '</button>';
            		interaction_temp += '<br/>';
            		interaction_temp += '<div id="result">';
-           		interaction_temp += ' </div>'
+           		interaction_temp += ' </div>';
            		
            	} else if ( interactionId == '5' ) {
            		interaction_temp += '<br/><br/><br/><br/>';
@@ -281,7 +281,16 @@ var app = {
            		interaction_temp += '<br/>';
            		interaction_temp += '<button type="button" onclick="check_quiz(1)">Check answer';
            		interaction_temp += '</button>';
-           	}
+           	} else if ( interactionId == '1' ) {
+
+              interaction_temp += "<button id='nfcButton' type='button' onclick='startNFCInteraction(";
+              interaction_temp += "1, 1, &#39;This is the code&#39;)'";
+              interaction_temp += '>Start NFC reading';
+              interaction_temp += '</button>';
+              interaction_temp += '<br/>';
+              interaction_temp += ' </div>';
+
+            }
            	
            	temp_html+= interaction_temp;
            	
