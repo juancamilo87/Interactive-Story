@@ -10,6 +10,7 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin$9.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\Util.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\megster\cordova\FileChooser.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\phonegap\plugins\barcodescanner\BarcodeScanner.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\BuildConfig.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\fi\oulu\story\CordovaApp.class \

@@ -8,16 +8,16 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
-        "clobbers": [
-            "device"
-        ]
-    },
-    {
         "file": "plugins/com.chariotsolutions.nfc.plugin/www/phonegap-nfc.js",
         "id": "com.chariotsolutions.nfc.plugin.NFC",
         "runs": true
+    },
+    {
+        "file": "plugins/com.megster.cordova.FileChooser/www/fileChooser.js",
+        "id": "com.megster.cordova.FileChooser.FileChooser",
+        "clobbers": [
+            "fileChooser"
+        ]
     },
     {
         "file": "plugins/com.phonegap.plugins.barcodescanner/www/barcodescanner.js",
@@ -27,17 +27,10 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.media/www/MediaError.js",
-        "id": "org.apache.cordova.media.MediaError",
+        "file": "plugins/org.apache.cordova.device/www/device.js",
+        "id": "org.apache.cordova.device.device",
         "clobbers": [
-            "window.MediaError"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.media/www/Media.js",
-        "id": "org.apache.cordova.media.Media",
-        "clobbers": [
-            "window.Media"
+            "device"
         ]
     },
     {
@@ -185,18 +178,34 @@ module.exports = [
             "cordova"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/org.apache.cordova.media/www/MediaError.js",
+        "id": "org.apache.cordova.media.MediaError",
+        "clobbers": [
+            "window.MediaError"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.media/www/Media.js",
+        "id": "org.apache.cordova.media.Media",
+        "clobbers": [
+            "window.Media"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
     "com.brodysoft.sqlitePlugin": "1.0.4",
+    "com.chariotsolutions.nfc.plugin": "0.6.1",
+    "com.megster.cordova.FileChooser": "0.0.0",
+    "com.phonegap.plugins.barcodescanner": "2.2.0",
     "org.apache.cordova.console": "0.2.13",
     "org.apache.cordova.device": "0.3.0",
-    "com.chariotsolutions.nfc.plugin": "0.6.1",
-    "com.phonegap.plugins.barcodescanner": "2.2.0",
-    "org.apache.cordova.media": "0.2.16",
-    "org.apache.cordova.file": "1.3.3"
+    "org.apache.cordova.file": "1.3.3",
+    "org.apache.cordova.geolocation": "0.3.12",
+    "org.apache.cordova.media": "0.2.16"
 }
 // BOTTOM OF METADATA
 });

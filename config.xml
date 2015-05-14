@@ -14,4 +14,6 @@
 	</feature>
 	<plugin name="SQLitePlugin" value="org.pgsqlite.SQLitePlugin"/>
     <feature name="Console"> <param name="ios-package" value="CDVLogger" /> </feature>
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="AndroidExtraFilesystems" value="sdcard,cache" />
 </widget>

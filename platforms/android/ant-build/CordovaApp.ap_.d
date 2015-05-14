@@ -99,7 +99,6 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\css \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\icon \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\index.html \
-C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\InteractiveStoryReader.html \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\new.html \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugin.xml \
@@ -118,7 +117,8 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\log
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\test.wav \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\test1.mp3 \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\app.js \
-C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\GPSlocation.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\file_chooser.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\GPSlocation-bkp.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\index.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\navigate.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\nfc_interaction.js \
@@ -128,6 +128,7 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\stor
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\test.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.chariotsolutions.nfc.plugin \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.megster.cordova.FileChooser \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.phonegap.plugins.barcodescanner \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file \
@@ -136,6 +137,8 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www\SQLitePlugin.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.chariotsolutions.nfc.plugin\www \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.chariotsolutions.nfc.plugin\www\phonegap-nfc.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.megster.cordova.FileChooser\www \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.megster.cordova.FileChooser\www\fileChooser.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.phonegap.plugins.barcodescanner\www \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.phonegap.plugins.barcodescanner\www\barcodescanner.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device\www \

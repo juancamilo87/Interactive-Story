@@ -34,7 +34,6 @@ function give_feedback(interaction_id, result)
 	else
 	{
 		play_audio_feedback(text_data);
-
 		display_text_feedback(audio_path);
 	}
 

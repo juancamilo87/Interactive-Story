@@ -27,11 +27,15 @@ function successVersion(tx, res){
     if(real_version == version)
     {
         console.log('Version up to date. DB version: ' + real_version);
+        if(window.localStorage.getItem('runned')=='0')
+        {
+            app.populateDb(db);
+        }
     }
     else
     {
         console.log('DB version outdated, DB will be re generated');
-        db.transaction(dropDB, errorCB, successdropCB);
+        db.transaction(dropDB, errordropCB, successdropCB);
         
     }
 }
@@ -57,10 +61,11 @@ function populateDB(tx) {
     tx.executeSql('CREATE TABLE versions (version TEXT)');
     tx.executeSql('INSERT INTO versions (version) VALUES (?)', [version]);
     
-    ////Create tables related to logs(Yifei)
-    tx.executeSql('CREATE TABLE story_log (action TEXT, status INTEGER, chapter_id INTEGER, story_id INTEGER, timestamp TEXT, PRIMARY KEY(chapter_id, story_id, timestamp))');
-    tx.executeSql('CREATE TABLE interaction_log (interaction_type TEXT, interaction_id INTEGER, interaction_status INTEGER, timestamp TEXT, PRIMARY KEY(interaction_type, interation_id, timestamp))');
-    ////
+    // ////Create tables related to logs(Yifei)
+    // tx.executeSql('CREATE TABLE story_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, action TEXT, status INTEGER, chapter_id INTEGER, story_id INTEGER, timestamp TEXT)');
+    // tx.executeSql('CREATE TABLE interaction_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type TEXT, interaction_id INTEGER, interaction_status INTEGER, timestamp TEXT)');
+    // ////
+    // console.log('finished yifie');
 }
 
 // create tables
@@ -77,22 +82,30 @@ function dropDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS spell');
     tx.executeSql('DROP TABLE IF EXISTS quiz');
     tx.executeSql('DROP TABLE IF EXISTS versions');
+    // tx.executeSql('DROP TABLE IF EXISTS story_log');
+    // tx.executeSql('DROP TABLE IF EXISTS interaction_log');
 }
 
 
 // Transaction error callback
 function errorCB(err) {
-console.log("Error processing SQL: " + err.code);
+console.log("Error processing SQL: " + err.message);
 }
 
 // Success callback
 function successCB() {
-    window.localStorage.setItem('runned', '1'); 
+    //window.localStorage.setItem('runned', '1'); 
     console.log('Succesfully populated DB');
+    app.populateDb(db);
+}
+
+function errordropCB(err) {
+console.log("Error droping SQL: " + err.message);
 }
 
 // Success callback
 function successdropCB() {
+    window.localStorage.setItem('runned', '0'); 
     console.log('Regenerating DB');
     db.transaction(populateDB, errorCB, successCB);
 }
@@ -102,10 +115,12 @@ function successdropCB() {
 //// Function for submitting logs on-line by users; Send to server Not finished yet(Yifei)
 function submit_logs(tx){
     ////Get story logs and interaction logs, then combine them together. 
-    tx.executeSql('select * from story_log', [], success_get_story_log);
+    /*tx.executeSql('select * from story_log', [], success_get_story_log);
     tx.executeSql('select * from interaction_log', [], success_get_interaction_log);
     ////use story_log to merge interaction_log, just send story_log_json
-    $.extend(story_log_json, interaction_log_json);
+    $.extend(story_log_json, interaction_log_json);*/
+	
+	alert("function called");
     
     ////Send logs to server by HTTP, needed to be implement
     
@@ -152,4 +167,14 @@ function story_log(tx, action, status, chapter_id, story_id){
 function interaction_log(tx, interaction_type, interaction_id, interaction_status){
     var timestamp = Date.now();
     tx.execute('INSERT INTO interaction_log (interaction_type, interaction_id, interaction_status, timestamp) VALUES (?,?,?,?)', [interaction_type, interaction_id, interaction_status, timestamp]);
+}
+
+function retreive_json_from_file( json_file ) {
+	var story_json;
+	
+	jQuery.getJSON(json_file, function(data){         
+	    story_json = data;
+	});
+	
+	return story_json;	
 }

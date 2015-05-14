@@ -4,6 +4,8 @@ var story;
 var id;
 var result;
 
+var nfcButton;
+
 function startNFCInteraction(interaction_id, story_id, message)
 {
     result = 0;
@@ -13,6 +15,11 @@ function startNFCInteraction(interaction_id, story_id, message)
     mimeType = "text/is";
     nfc.addMimeTypeListener(mimeType, onNFC,onNFCSuccess,onNFCFailure);
     //nfc.addNdefListener(onNFC, onNFCSuccess, onNFCFailure);
+
+
+    nfcButton = document.getElementById('nfcButton');
+    nfcButton.innerHTML = "Reading..."
+    nfcButton.onclick = function(){};
 }
 
 function onNFC(nfcEvent)
@@ -28,7 +35,8 @@ function onNFC(nfcEvent)
         ndef.textRecord(theMessage)
         ];
         nfc.write(message, onWriteSuccess, onWriteFailure);
-    }*/
+    }
+    */
     //Read nfc message and compare
     console.log(JSON.stringify(nfcEvent.tag));
     var payload_story = nfcEvent.tag.ndefMessage[0].payload;
@@ -36,8 +44,8 @@ function onNFC(nfcEvent)
     var text_story = nfc.bytesToString(payload_story);
     var payload_message = nfcEvent.tag.ndefMessage[1].payload;
     var text_code = nfc.bytesToString(payload_message).substring(3);
-    console.log(text_code);
-    console.log(theMessage);
+    //console.log(text_code);
+    //console.log(theMessage);
 
     /*if(text_story != story)
     {
@@ -45,20 +53,23 @@ function onNFC(nfcEvent)
         give_feedback(id, result);
     }
     else */
+        
     if(text_code != theMessage)
     {
-        alert("Incorrect tag");
-        give_feedback(id, result);
+        /*alert("Incorrect tag");
+        give_feedback(id, result); */
+        tempFailure();
     }
     else
     {
-        result = 1;
+        /*result = 1;
         next_chapter();
         give_feedback(id, result);
-        nfc.removeMimeTypeListener(mimeType, onNFC);
+        nfc.removeMimeTypeListener(mimeType, onNFC);*/
+        tempSuccess();
     }
     
-
+    
 
 
 
@@ -72,6 +83,8 @@ function onNFC(nfcEvent)
     {
         
     }*/
+
+    
     
 }
 
@@ -82,7 +95,7 @@ function onNFCSuccess(result)
 
 function onNFCFailure(reason)
 {
-    alert("Failed to add NDEF listener");
+    alert("Failed to add Mymetype listener");
 }
 
 function onWriteSuccess(result)
@@ -93,4 +106,23 @@ function onWriteSuccess(result)
 function onWriteFailure(reason)
 {
     alert("Failed writing NFC tag");
+}
+
+
+function tempSuccess(){
+    alert("Congratulations! Correct tag!");
+    nfc.removeMimeTypeListener(mimeType, onNFC);
+    nfcButton.innerHTML = "Start NFC reading";
+    nfcButton.onclick = function(){
+        startNFCInteraction(1,1, "This is the code");
+    };
+}
+
+function tempFailure(){
+    alert("Incorrect tag, try again...");
+    nfc.removeMimeTypeListener(mimeType, onNFC);
+    nfcButton.innerHTML = "Start NFC reading";
+    nfcButton.onclick = function(){
+        startNFCInteraction(1,1, "This is the code");
+    };
 }

@@ -26,7 +26,7 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        //document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
     //
@@ -49,26 +49,26 @@ var app = {
         //console.log('Received Event: ' + id);
     },
 	//Populate the database
-	populateDb: function() {
+	populateDb: function(db) {
 		
 		//alert("in populate db function");
 		
-		var databaseName 		= "StoryEditor";
-    	var databaseVersion 	= "1.0";
-    	var databaseDisplayName = "StoryEditor";
-    	var databaseSize 		= 25;
+		// var databaseName 		= "StoryEditor";
+  //   	var databaseVersion 	= "1.0";
+  //   	var databaseDisplayName = "StoryEditor";
+  //   	var databaseSize 		= 25;
     	
-        var db = window.openDatabase(databaseName, databaseVersion , databaseDisplayName, databaseSize);
+  //       var db = window.openDatabase(databaseName, databaseVersion , databaseDisplayName, databaseSize);
 
-        var temp = "";
-        
+  //       var temp = "";
+        console.log('check if DB populated');
         var firstrun = window.localStorage.getItem('runned'); 
-        if ( firstrun == null ) {
+        if ( firstrun == null || firstrun == '0') {
         	
         	//alert(firstrun);
         	//alert("in if check");
         	
-            console.log('First Run: proceed to create DB');
+            console.log('Not populated: proceed to populate DB');
             db.transaction(app.populateDBTables, app.errorCB, app.successCB);
         }
         else {
@@ -78,26 +78,26 @@ var app = {
         }
 	},
 	populateDBTables: function(tx) {
-		tx.executeSql('CREATE TABLE stories (story_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, description TEXT)');
-        tx.executeSql('CREATE TABLE chapters (chapter_id INTEGER PRIMARY KEY AUTOINCREMENT, story_id INTEGER NOT NULL, number INTEGER NOT NULL, name TEXT NOT NULL, body TEXT, video_path TEXT, image_path TEXT, audio_path TEXT, interaction_id INTEGER, FOREIGN KEY(story_id) REFERENCES stories(story_id) ON DELETE CASCADE, FOREIGN KEY(interaction_id) REFERENCES interaction_types(id) ON DELETE CASCADE)');
-        tx.executeSql('CREATE TABLE interactions (interaction_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type INTEGER NOT NULL, nfc_id INTEGER, qr_id INTEGER, gps_id INTEGER, spell_id INTEGER, quiz_id INTEGER, FOREIGN KEY(interaction_type) REFERENCES interaction_types(id) ON DELETE CASCADE, FOREIGN KEY(nfc_id) REFERENCES nfc(nfc_id) ON DELETE CASCADE, FOREIGN KEY(qr_id) REFERENCES qr(qr_id) ON DELETE CASCADE, FOREIGN KEY(gps_id) REFERENCES gps(gps_id) ON DELETE CASCADE, FOREIGN KEY(spell_id) REFERENCES spell(spell_id) ON DELETE CASCADE, FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE, CHECK((nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NOT NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NOT NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NOT NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NOT NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NOT NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL)))');
-        tx.executeSql('CREATE TABLE interaction_types (id INTEGER PRIMARY KEY AUTOINCREMENT, synonym TEXT UNIQUE NOT NULL)');
-        tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['NFC']);
-        tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['QR']);
-        tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['GPS']);
-        tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Spell Check']);
-        tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Quiz']);
-        tx.executeSql('CREATE TABLE nfc (nfc_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
-        tx.executeSql('CREATE TABLE qr (qr_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
-        tx.executeSql('CREATE TABLE gps (gps_id INTEGER PRIMARY KEY AUTOINCREMENT, latitude REAL NOT NULL, longitude REAL NOT NULL)');
-        tx.executeSql('CREATE TABLE spell (spell_id INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT NOT NULL)');
-        tx.executeSql('CREATE TABLE quiz (quiz_id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT NOT NULL, correct_answer TEXT NOT NULL, answer_1 TEXT NOT NULL, answer_2 TEXT NOT NULL, answer_3 TEXT NOT NULL)');
+		// tx.executeSql('CREATE TABLE stories (story_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, description TEXT)');
+  //       tx.executeSql('CREATE TABLE chapters (chapter_id INTEGER PRIMARY KEY AUTOINCREMENT, story_id INTEGER NOT NULL, number INTEGER NOT NULL, name TEXT NOT NULL, body TEXT, video_path TEXT, image_path TEXT, audio_path TEXT, interaction_id INTEGER, FOREIGN KEY(story_id) REFERENCES stories(story_id) ON DELETE CASCADE, FOREIGN KEY(interaction_id) REFERENCES interaction_types(id) ON DELETE CASCADE)');
+  //       tx.executeSql('CREATE TABLE interactions (interaction_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type INTEGER NOT NULL, nfc_id INTEGER, qr_id INTEGER, gps_id INTEGER, spell_id INTEGER, quiz_id INTEGER, FOREIGN KEY(interaction_type) REFERENCES interaction_types(id) ON DELETE CASCADE, FOREIGN KEY(nfc_id) REFERENCES nfc(nfc_id) ON DELETE CASCADE, FOREIGN KEY(qr_id) REFERENCES qr(qr_id) ON DELETE CASCADE, FOREIGN KEY(gps_id) REFERENCES gps(gps_id) ON DELETE CASCADE, FOREIGN KEY(spell_id) REFERENCES spell(spell_id) ON DELETE CASCADE, FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE, CHECK((nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NOT NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NOT NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NOT NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NOT NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NOT NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL)))');
+  //       tx.executeSql('CREATE TABLE interaction_types (id INTEGER PRIMARY KEY AUTOINCREMENT, synonym TEXT UNIQUE NOT NULL)');
+  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['NFC']);
+  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['QR']);
+  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['GPS']);
+  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Spell Check']);
+  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Quiz']);
+  //       tx.executeSql('CREATE TABLE nfc (nfc_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
+  //       tx.executeSql('CREATE TABLE qr (qr_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
+  //       tx.executeSql('CREATE TABLE gps (gps_id INTEGER PRIMARY KEY AUTOINCREMENT, latitude REAL NOT NULL, longitude REAL NOT NULL)');
+  //       tx.executeSql('CREATE TABLE spell (spell_id INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT NOT NULL)');
+  //       tx.executeSql('CREATE TABLE quiz (quiz_id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT NOT NULL, correct_answer TEXT NOT NULL, answer_1 TEXT NOT NULL, answer_2 TEXT NOT NULL, answer_3 TEXT NOT NULL)');
         
         
         var chapterJson = [
 		                   { 	"story_id":"1", "name":"apple chapter 1", "body" : "test body of story 1", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
-		                   { 	"story_id":"2", "name":"apple chapter 2", "body" : "test body of story 2", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
-		                   { 	"story_id":"3", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1"}
+		                   { 	"story_id":"1", "name":"apple chapter 2", "body" : "test body of story 2", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "4" },
+		                   { 	"story_id":"1", "name":"apple chapter 3", "body" : "test body of story 3", "video_url" : "www.vidoe.com", "image_url" : "http://chooseyourownadventurebooks.org/images/write.interactive.stories.png", "audio_url" : "www.audio.com", "interaction" : "1"}
 		                  ]; 
 
 		var storyJson = [
@@ -170,6 +170,7 @@ var app = {
 	},
 	errorCB: function(err) {
 		alert("error code is " + err.message);
+    window.localStorage.setItem('runned', '0');
 		//return false;
 	},
 	successCB: function() {
