@@ -102,10 +102,12 @@ function successdropCB() {
 //// Function for submitting logs on-line by users; Send to server Not finished yet(Yifei)
 function submit_logs(tx){
     ////Get story logs and interaction logs, then combine them together. 
-    tx.executeSql('select * from story_log', [], success_get_story_log);
+    /*tx.executeSql('select * from story_log', [], success_get_story_log);
     tx.executeSql('select * from interaction_log', [], success_get_interaction_log);
     ////use story_log to merge interaction_log, just send story_log_json
-    $.extend(story_log_json, interaction_log_json);
+    $.extend(story_log_json, interaction_log_json);*/
+	
+	alert("function called");
     
     ////Send logs to server by HTTP, needed to be implement
     
@@ -152,4 +154,14 @@ function story_log(tx, action, status, chapter_id, story_id){
 function interaction_log(tx, interaction_type, interaction_id, interaction_status){
     var timestamp = Date.now();
     tx.execute('INSERT INTO interaction_log (interaction_type, interaction_id, interaction_status, timestamp) VALUES (?,?,?,?)', [interaction_type, interaction_id, interaction_status, timestamp]);
+}
+
+function retreive_json_from_file( json_file ) {
+	var story_json;
+	
+	jQuery.getJSON(json_file, function(data){         
+	    story_json = data;
+	});
+	
+	return story_json;	
 }
