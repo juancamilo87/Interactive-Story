@@ -4,7 +4,7 @@ function choose_file() {
 
     fileChooser.open(function(uri) {
     //alert(uri);
-    alert(uri);
+    //alert(uri);
     // alert(uri.substring(0,4));
     if(uri.indexOf('file:/')==-1)
     {
@@ -45,7 +45,7 @@ function choose_file() {
 
 function cbSuccess(fileEntry)
 {
-    alert('Success');
+    //alert('Success');
     //alert(fileEntry.toURL());
     //alert(fileEntry.toInternalURL());
 
@@ -58,7 +58,7 @@ function cbSuccess(fileEntry)
             console.log("read success");
             console.log(evt.target.result);
             var myJson = JSON.parse(evt.target.result);
-            
+            populate_db_from_json(myJson);
             //alert(myJson.name);
         };
         reader.readAsText(file);

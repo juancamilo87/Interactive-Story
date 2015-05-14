@@ -85,7 +85,7 @@ var app = {
   //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['NFC']);
   //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['QR']);
   //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['GPS']);
-  //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Spell Check']);
+  //        qtx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Spell Check']);
   //       tx.executeSql('INSERT INTO interaction_types (synonym) VALUES (?)', ['Quiz']);
   //       tx.executeSql('CREATE TABLE nfc (nfc_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
   //       tx.executeSql('CREATE TABLE qr (qr_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL)');
