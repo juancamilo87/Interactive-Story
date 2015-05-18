@@ -44,27 +44,27 @@ function successVersion(tx, res){
 // create tables
 function populateDB(tx) {
     console.log('populating');
-    tx.executeSql('CREATE TABLE authors (author_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, lastname TEXT, email TEXT, website TEXT)');
-    tx.executeSql('CREATE TABLE stories (story_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, description TEXT, author_id INTEGER NOT NULL, FOREIGN KEY(author_id) REFERENCES authors(author_id) ON DELETE CASCADE)');
-    tx.executeSql('CREATE TABLE chapters (chapter_id INTEGER PRIMARY KEY AUTOINCREMENT, story_id INTEGER NOT NULL, number INTEGER NOT NULL, name TEXT NOT NULL, body TEXT, video_path TEXT, image_path TEXT, audio_path TEXT, interaction_id INTEGER, instructions TEXT, UNIQUE(story_id, number), FOREIGN KEY(story_id) REFERENCES stories(story_id) ON DELETE CASCADE, FOREIGN KEY(interaction_id) REFERENCES interactions(interaction_id) ON DELETE CASCADE)');
-    tx.executeSql('CREATE TABLE interactions (interaction_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type INTEGER NOT NULL, nfc_id INTEGER, qr_id INTEGER, gps_id INTEGER, spell_id INTEGER, quiz_id INTEGER, FOREIGN KEY(interaction_type) REFERENCES interaction_types(id) ON DELETE CASCADE, FOREIGN KEY(nfc_id) REFERENCES nfc(nfc_id) ON DELETE CASCADE, FOREIGN KEY(qr_id) REFERENCES qr(qr_id) ON DELETE CASCADE, FOREIGN KEY(gps_id) REFERENCES gps(gps_id) ON DELETE CASCADE, FOREIGN KEY(spell_id) REFERENCES spell(spell_id) ON DELETE CASCADE, FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE, CHECK((nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NOT NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NOT NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NOT NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NOT NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NOT NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL)))');
-    tx.executeSql('CREATE TABLE interaction_types (id INTEGER PRIMARY KEY AUTOINCREMENT, synonym TEXT UNIQUE NOT NULL, table_name TEXT UNIQUE NOT NULL)');
+    tx.executeSql('CREATE TABLE authors (author_id INTEGER PRIMARY KEY, name TEXT, lastname TEXT, email TEXT, website TEXT)');
+    tx.executeSql('CREATE TABLE stories (story_id INTEGER PRIMARY KEY, name TEXT NOT NULL, description TEXT, author_id INTEGER NOT NULL, FOREIGN KEY(author_id) REFERENCES authors(author_id) ON DELETE CASCADE)');
+    tx.executeSql('CREATE TABLE chapters (chapter_id INTEGER PRIMARY KEY, story_id INTEGER NOT NULL, number INTEGER NOT NULL, name TEXT NOT NULL, body TEXT, video_path TEXT, image_path TEXT, audio_path TEXT, interaction_id INTEGER, instructions TEXT, UNIQUE(story_id, number), FOREIGN KEY(story_id) REFERENCES stories(story_id) ON DELETE CASCADE, FOREIGN KEY(interaction_id) REFERENCES interactions(interaction_id) ON DELETE CASCADE)');
+    tx.executeSql('CREATE TABLE interactions (interaction_id INTEGER PRIMARY KEY, interaction_type INTEGER NOT NULL, nfc_id INTEGER, qr_id INTEGER, gps_id INTEGER, spell_id INTEGER, quiz_id INTEGER, FOREIGN KEY(interaction_type) REFERENCES interaction_types(id) ON DELETE CASCADE, FOREIGN KEY(nfc_id) REFERENCES nfc(nfc_id) ON DELETE CASCADE, FOREIGN KEY(qr_id) REFERENCES qr(qr_id) ON DELETE CASCADE, FOREIGN KEY(gps_id) REFERENCES gps(gps_id) ON DELETE CASCADE, FOREIGN KEY(spell_id) REFERENCES spell(spell_id) ON DELETE CASCADE, FOREIGN KEY(quiz_id) REFERENCES quiz(quiz_id) ON DELETE CASCADE, CHECK((nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NOT NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NOT NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NULL AND gps_id is NOT NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NULL AND qr_id is NOT NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL) OR (nfc_id is NOT NULL AND qr_id is NULL AND gps_id is NULL AND spell_id is NULL AND quiz_id is NULL)))');
+    tx.executeSql('CREATE TABLE interaction_types (id INTEGER PRIMARY KEY, synonym TEXT UNIQUE NOT NULL, table_name TEXT UNIQUE NOT NULL)');
     tx.executeSql('INSERT INTO interaction_types (synonym, table_name) VALUES (?,?)', ['NFC', 'nfc']);
     tx.executeSql('INSERT INTO interaction_types (synonym, table_name) VALUES (?,?)', ['QR', 'qr']);
     tx.executeSql('INSERT INTO interaction_types (synonym, table_name) VALUES (?,?)', ['GPS', 'gps']);
     tx.executeSql('INSERT INTO interaction_types (synonym, table_name) VALUES (?,?)', ['Spell Check', 'spell']);
     tx.executeSql('INSERT INTO interaction_types (synonym, table_name) VALUES (?,?)', ['Quiz', 'quiz']);
-    tx.executeSql('CREATE TABLE nfc (nfc_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
-    tx.executeSql('CREATE TABLE qr (qr_id INTEGER PRIMARY KEY AUTOINCREMENT, info TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
-    tx.executeSql('CREATE TABLE gps (gps_id INTEGER PRIMARY KEY AUTOINCREMENT, latitude REAL NOT NULL, longitude REAL NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
-    tx.executeSql('CREATE TABLE spell (spell_id INTEGER PRIMARY KEY AUTOINCREMENT, phrase TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
-    tx.executeSql('CREATE TABLE quiz (quiz_id INTEGER PRIMARY KEY AUTOINCREMENT, question TEXT NOT NULL, correct_answer TEXT NOT NULL, answer_1 TEXT NOT NULL, answer_2 TEXT NOT NULL, answer_3 TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');             
+    tx.executeSql('CREATE TABLE nfc (nfc_id INTEGER PRIMARY KEY, info TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
+    tx.executeSql('CREATE TABLE qr (qr_id INTEGER PRIMARY KEY, info TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
+    tx.executeSql('CREATE TABLE gps (gps_id INTEGER PRIMARY KEY, latitude REAL NOT NULL, longitude REAL NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
+    tx.executeSql('CREATE TABLE spell (spell_id INTEGER PRIMARY KEY, phrase TEXT NOT NULL, instructions TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');
+    tx.executeSql('CREATE TABLE quiz (quiz_id INTEGER PRIMARY KEY, question TEXT NOT NULL, correct_answer TEXT NOT NULL, answer_1 TEXT NOT NULL, answer_2 TEXT NOT NULL, answer_3 TEXT NOT NULL, feedback_right TEXT, feedback_wrong TEXT, audiopath_right TEXT, audiopath_wrong TEXT)');             
     tx.executeSql('CREATE TABLE versions (version TEXT)');
     tx.executeSql('INSERT INTO versions (version) VALUES (?)', [version]);
     
-    // ////Create tables related to logs(Yifei)
-    // tx.executeSql('CREATE TABLE story_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, action TEXT, status INTEGER, chapter_id INTEGER, story_id INTEGER, timestamp TEXT)');
-    // tx.executeSql('CREATE TABLE interaction_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type TEXT, interaction_id INTEGER, interaction_status INTEGER, timestamp TEXT)');
+    ////Create tables related to logs(Yifei)
+    tx.executeSql('CREATE TABLE story_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, action TEXT, status INTEGER, chapter_id INTEGER, story_id INTEGER, timestamp TEXT)');
+    tx.executeSql('CREATE TABLE interaction_log (log_id INTEGER PRIMARY KEY AUTOINCREMENT, interaction_type TEXT, interaction_id INTEGER, interaction_status INTEGER, timestamp TEXT)');
     // ////
     // console.log('finished yifie');
 }
@@ -83,8 +83,8 @@ function dropDB(tx) {
     tx.executeSql('DROP TABLE IF EXISTS spell');
     tx.executeSql('DROP TABLE IF EXISTS quiz');
     tx.executeSql('DROP TABLE IF EXISTS versions');
-    // tx.executeSql('DROP TABLE IF EXISTS story_log');
-    // tx.executeSql('DROP TABLE IF EXISTS interaction_log');
+    tx.executeSql('DROP TABLE IF EXISTS story_log');
+    tx.executeSql('DROP TABLE IF EXISTS interaction_log');
 }
 
 
@@ -95,7 +95,7 @@ console.log("Error processing SQL: " + err.message);
 
 // Success callback
 function successCB() {
-    //window.localStorage.setItem('runned', '1'); 
+    window.localStorage.setItem('runned', '1'); 
     console.log('Succesfully populated DB');
     //app.populateDb(db);
 }
@@ -106,7 +106,6 @@ console.log("Error droping SQL: " + err.message);
 
 // Success callback
 function successdropCB() {
-    window.localStorage.setItem('runned', '0'); 
     console.log('Regenerating DB');
     db.transaction(populateDB, errorCB, successCB);
 }
@@ -199,8 +198,64 @@ function populateFromJsonDB(tx)
     var chaptersJson = story_json.chapters;
 
     $.each(chaptersJson, function(idx, objChapter) {
+
+        //Start download of urls
+        //var fileName = url.substring(url.lastIndexOf('/')+1);
+        
+        var video_name;
+        if(objChapter.video_url != null)
+        {
+            video_name = objChapter.video_url.substring(objChapter.video_url.lastIndexOf('/')+1);
+        }
+        var image_name;
+        if(objChapter.image_url != null)
+        {
+            image_name = objChapter.image_url.substring(objChapter.image_url.lastIndexOf('/')+1);
+        }
+        var audio_name;
+        if(objChapter.audio_url != null)
+        {
+            audio_name = objChapter.audio_url.substring(objChapter.audio_url.lastIndexOf('/')+1);
+        }
+
+        if(objChapter.video_url != null)
+        {
+            download_file(objChapter.video_url, story_json.story_id, objChapter.number, 0,0);
+        }
+        if(objChapter.image_url != null)
+        {
+            download_file(objChapter.image_url, story_json.story_id, objChapter.number, 1,0);
+        }
+        if(objChapter.audio_url != null)
+        {
+            download_file(objChapter.audio_url, story_json.story_id, objChapter.number, 2,0);
+        }
+
+
         if(objChapter.interaction != null)
         {
+            //Start download of interaction urls
+
+            var feedback_right_name = null;
+            if(objChapter.interaction.feedbackurl_right != null)
+            {
+                feedback_right_name = objChapter.interaction.feedbackurl_right.substring(objChapter.interaction.feedbackurl_right.lastIndexOf('/')+1);
+            }
+
+            var feedback_wrong_name;
+            if(objChapter.interaction.feedbackurl_wrong != null)
+            {
+                feedback_wrong_name = objChapter.interaction.feedbackurl_wrong.substring(objChapter.interaction.feedbackurl_wrong.lastIndexOf('/')+1);;
+            }
+
+            if(objChapter.interaction.feedbackurl_right != null)
+            {
+                download_file(objChapter.interaction.feedbackurl_right, story_json.story_id, objChapter.number, 0,1);
+            }
+            if(objChapter.interaction.feedbackurl_wrong != null)
+            {
+                download_file(objChapter.interaction.feedbackurl_wrong, story_json.story_id, objChapter.number, 1,1);
+            }
             var inter_type = objChapter.interaction.type;
 
             if( inter_type == "1" ) {
@@ -237,10 +292,10 @@ function populateFromJsonDB(tx)
 
 function successJsonCB() 
 {
-    alert('success');
+    alert('Story succesfully loaded');
 }
 
 function errorJsonCB(err)
 {
-    alert("Error populating from JSON: " + err.message);
+    alert("Error loading story, verify the file has the appropriate format");
 }
