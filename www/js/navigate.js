@@ -321,7 +321,9 @@ else if(interaction_result == 0)
 }
 // console.log('Complete file path: ' + filePath);
 //  		console.log('before playback');
+console.log("Final audio path: " + filePath);
 play_audio(encodeURI(filePath));
+//play_audio(encodeURI("file://sdcard/Download/Skinny_Love.mp3"));
 // console.log('after playback');
 
 

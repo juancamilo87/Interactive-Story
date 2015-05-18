@@ -2,18 +2,24 @@ var resultDiv;
 
 document.addEventListener("deviceready", init, false);
 function init() {
-	document.querySelector("#QRScan").addEventListener("touchend", scan, false);
-	resultDiv = document.querySelector("#results");
+	document.querySelector("#QRScan").addEventListener("touchend", startScan, false);
+	resultDiv = document.querySelector("#qrResult");
 }
 
 function startScan() {
 
+	//alert( resultDiv );
+	
 	cordova.plugins.barcodeScanner.scan(
 		function (result) {
 			var s = "Result: " + result.text + "<br/>" +
 			"Format: " + result.format + "<br/>" +
 			"Cancelled: " + result.cancelled;
-			resultDiv.innerHTML = s;
+			
+			document.getElementById("qrResult").innerHTML = s;
+			
+			//alert( s );
+			
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);

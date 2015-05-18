@@ -1,4 +1,4 @@
-version = '1.0';
+version = '1.0.3';
 
 ////yifei added here
 var story_log_json = null;
@@ -173,7 +173,7 @@ function populate_db_from_json(story_json)
 {
     current_story_json = story_json;
     db = window.sqlitePlugin.openDatabase({name: "stories.db"});
-    db.transaction(populateFromJsonDB, errorJsonCB, successJsonCB);
+    db.transaction(populateFromJsonDB, errorJsonCBstories, successJsonCBstories);
     
 
     
@@ -259,28 +259,28 @@ function populateFromJsonDB(tx)
             var inter_type = objChapter.interaction.type;
 
             if( inter_type == "1" ) {
-                tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.info, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,objChapter.interaction.feedbackurl_right,objChapter.interaction.feedbackurl_wrong]);  
+                tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.info, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,feedback_right_name,feedback_wrong_name]);  
                 tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, nfc_id) VALUES (?,?,?)", [objChapter.interaction.interaction_id, objChapter.interaction.type, objChapter.interaction.id]);  
             } else if ( inter_type == "2" ) {
-                tx.executeSql("INSERT INTO qr (qr_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.info, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,objChapter.interaction.feedbackurl_right,objChapter.interaction.feedbackurl_wrong]);  
+                tx.executeSql("INSERT INTO qr (qr_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.info, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,feedback_right_name,feedback_wrong_name]);  
                 tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, qr_id) VALUES (?,?,?)", [objChapter.interaction.interaction_id, objChapter.interaction.type, objChapter.interaction.id]);
             } else if (inter_type == "3") {
-                tx.executeSql("INSERT INTO gps (gps_id, latitude, longitude, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?)", [objChapter.interaction.id,objChapter.interaction.latitude,objChapter.interaction.longitude, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,objChapter.interaction.feedbackurl_right,objChapter.interaction.feedbackurl_wrong]);  
+                tx.executeSql("INSERT INTO gps (gps_id, latitude, longitude, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?)", [objChapter.interaction.id,objChapter.interaction.latitude,objChapter.interaction.longitude, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,feedback_right_name,feedback_wrong_name]);  
                 tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, gps_id) VALUES (?,?,?)", [objChapter.interaction.interaction_id, objChapter.interaction.type, objChapter.interaction.id]);  
             } else if (inter_type == "4") { 
-                tx.executeSql("INSERT INTO spell (spell_id, phrase, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.phrase, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,objChapter.interaction.feedbackurl_right,objChapter.interaction.feedbackurl_wrong]);  
+                tx.executeSql("INSERT INTO spell (spell_id, phrase, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.phrase, objChapter.interaction.instructions, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,feedback_right_name,feedback_wrong_name]);  
                 tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, spell_id) VALUES (?,?,?)", [objChapter.interaction.interaction_id, objChapter.interaction.type, objChapter.interaction.id]);  
             } else if (inter_type == "5") {
-                tx.executeSql("INSERT INTO quiz (quiz_id, question, correct_answer, answer_1, answer_2, answer_3, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.question, objChapter.interaction.correct_answer, objChapter.interaction.answer_1, objChapter.interaction.answer_2, objChapter.interaction.answer_3, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,objChapter.interaction.feedbackurl_right,objChapter.interaction.feedbackurl_wrong]);  
+                tx.executeSql("INSERT INTO quiz (quiz_id, question, correct_answer, answer_1, answer_2, answer_3, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.interaction.id, objChapter.interaction.question, objChapter.interaction.correct_answer, objChapter.interaction.answer_1, objChapter.interaction.answer_2, objChapter.interaction.answer_3, objChapter.interaction.feedback_right, objChapter.interaction.feedback_wrong,feedback_right_name,feedback_wrong_name]);  
                 tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, quiz_id) VALUES (?,?,?)", [objChapter.interaction.interaction_id, objChapter.interaction.type, objChapter.interaction.id]);  
             }
             
             var int_id = objChapter.interaction.interaction_id;
-            tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, interaction_id, instructions) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.name, objChapter.body, objChapter.video_url, objChapter.image_url, objChapter.audio_url, int_id, objChapter.instructions]);  
+            tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, interaction_id, instructions) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.name, objChapter.body, video_name, image_name, audio_name, int_id, objChapter.instructions]);  
         }
         else
         {
-         tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, instructions) VALUES (?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.name, objChapter.body, objChapter.video_url, objChapter.image_url, objChapter.audio_url]);     
+         tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, instructions) VALUES (?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.name, objChapter.body, video_name, image_name, audio_name]);     
         }
 
 
@@ -290,12 +290,12 @@ function populateFromJsonDB(tx)
     });
 }
 
-function successJsonCB() 
+function successJsonCBstories() 
 {
     alert('Story succesfully loaded');
 }
 
-function errorJsonCB(err)
+function errorJsonCBstories(err)
 {
     alert("Error loading story, verify the file has the appropriate format");
 }
