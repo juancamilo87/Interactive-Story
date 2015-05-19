@@ -1,5 +1,5 @@
 
-function check_word(){
+function check_word(interaction_id){
 
 var given_word = document.getElementById("given_word").value;
 var typed_word = document.getElementById("typed_word").value;

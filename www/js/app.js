@@ -6,7 +6,7 @@ function init() {
 	resultDiv = document.querySelector("#qrResult");
 }
 
-function startScan() {
+function startScan(interaction_id) {
 
 	//alert( resultDiv );
 	

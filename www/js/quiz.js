@@ -1,4 +1,4 @@
-function check_quiz(correct_answer){
+function check_quiz(interaction_id){
 	
 	//alert( correct_answer );
 	

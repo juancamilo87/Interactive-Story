@@ -3,7 +3,7 @@ var correct_latitude;
 var correct_longitude;
 var max_distance;
 //x here means HTML paragraph element
-function getLocation(interaction_id, given_latitude, given_longitude) {
+function getLocation(interaction_id) {
 	max_distance = 30;
     id = interaction_id;
     correct_latitude = given_latitude;

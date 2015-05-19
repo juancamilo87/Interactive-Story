@@ -6,7 +6,7 @@ var result;
 
 var nfcButton;
 
-function startNFCInteraction(interaction_id, story_id, message)
+function startNFCInteraction(interaction_id)
 {
     result = 0;
     id = interaction_id;
