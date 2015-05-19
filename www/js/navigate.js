@@ -1,10 +1,16 @@
 var current_chapter = 1;
+var chapters_count = 0;
 var db;
+var chapters = [];
 
 
 function reload_chapter(){
 //Reload HTML with current_chapter variable querying database
 	
+}
+
+function load_next_chapter (chapter_id, chapter_number) {
+	loadChapterByChapterId( chapter_id, chapter_number );
 }
 
 function next_chapter(){
@@ -58,6 +64,8 @@ function populateChaptersByStoryId (tx, story_id) {
 		//alert( "length is " + results.rows.length );
 		
         if(results.rows.length > 0) {
+        	
+        	chapters_count = results.rows.length; 
        	 
        	 //alert( "chapter count is " + results.rows.length );
        	 
@@ -66,6 +74,13 @@ function populateChaptersByStoryId (tx, story_id) {
        		 temp_html+= '<ul data-role="listview" data-inset="true">';
        		 temp_html+= '<li><a href="#storycontent" onclick="loadChapterByChapterId(';
        		 temp_html+= results.rows.item(i).chapter_id;
+       		 
+       		 //saving the chapter id in an array for the next chapter functionality.
+       		 
+       		 chapters[i] = results.rows.item(i).chapter_id;
+       		 
+       		 temp_html+= ',';
+       		 temp_html+= i;
        		 temp_html+= '); return true;">';
        		 temp_html+= results.rows.item(i).name;
        		 temp_html+= '</a></li>';
@@ -85,11 +100,14 @@ function populateChaptersByStoryId (tx, story_id) {
     });
 }
 
-function loadChapterByChapterId ( chapterId ) {
-	db.transaction( function(tx){ getChapterContentByChapterId(tx, chapterId) } , errorJsonCB, successJsonCB);
+function loadChapterByChapterId ( chapterId, chapter_number ) {
+	db.transaction( function(tx){ getChapterContentByChapterId(tx, chapterId, chapter_number) } , errorJsonCB, successJsonCB);
 }
 
-function getChapterContentByChapterId(tx, chapter_id) {
+function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
+	
+	alert(chapters);
+	
 	tx.executeSql("SELECT * FROM chapters WHERE chapter_id='"+chapter_id+"'", [], function(tx, results) {
         if(results.rows.length > 0) {
        	 
@@ -98,6 +116,8 @@ function getChapterContentByChapterId(tx, chapter_id) {
         var interactionId = "";
         	
        	 var temp_html = "";
+       	 var next_chapter = chapters[chapter_number+1];
+      	 
        	 for( var i=0; i<results.rows.length; i++ ) {
        		 temp_html+= '<p>';
        		 temp_html+= results.rows.item(i).body;
@@ -122,7 +142,9 @@ function getChapterContentByChapterId(tx, chapter_id) {
        		
        		interaction_temp += '<input id="given_word" type="text" value="Hello"/>';
        		interaction_temp += '<input id="typed_word" type="text"/>';
-       		interaction_temp += '<button type="button" onclick="check_word()"> Check';
+       		interaction_temp += '<button type="button" onclick="check_word(';
+       		interaction_temp += interactionId;
+       		interaction_temp += ')"> Check';
        		interaction_temp += '</button>';
        		interaction_temp += '<br/>';
        		interaction_temp += '<div id="result">';
@@ -138,12 +160,15 @@ function getChapterContentByChapterId(tx, chapter_id) {
        		interaction_temp += '</form>';
        		interaction_temp += '<br/>';
        		interaction_temp += '<br/>';
-       		interaction_temp += '<button type="button" onclick="check_quiz(1)">Check answer';
+       		interaction_temp += '<button type="button" onclick="check_quiz(';
+       		interaction_temp += interactionId;
+       		interaction_temp += ')">Check answer';
        		interaction_temp += '</button>';
        	} else if ( interactionId == '1' ) {
 
           interaction_temp += "<button id='nfcButton' type='button' onclick='startNFCInteraction(";
-          interaction_temp += "1, 1, &#39;This is the code&#39;)'";
+          interaction_temp += interactionId;
+          interaction_temp += ")'";
           interaction_temp += '>Start NFC reading';
           interaction_temp += '</button>';
           interaction_temp += '<br/>';
@@ -154,17 +179,15 @@ function getChapterContentByChapterId(tx, chapter_id) {
         	
         	//<a href="QRcode.html"> Click to scan </a>
         	
-        	interaction_temp += '<button id="qrBtn" style="background-image: url("/img/btn-back.gif");" onclick="startScan()"> Click to scan </button>';
+        	interaction_temp += '<button id="qrBtn" style="background-image: url("/img/btn-back.gif");" onclick="startScan(';
+        	interaction_temp += interactionId;
+        	interaction_temp += ')"> Click to scan </button>';
         	interaction_temp += '<br/>';
         	interaction_temp += '<div id="qrResult">testing</div>';
             
         } else if (interactionId == '3'){
             interaction_temp += "<button id='gpsButton' type='button' onclick='getLocation(";
             interaction_temp += interactionId;
-            interaction_temp += ", ";
-            interaction_temp += "51.5033630";
-            interaction_temp += ", ";
-            interaction_temp += "51.5033630";
             interaction_temp += ")'";
             interaction_temp += '>your location';
             interaction_temp += '</button>';
@@ -175,6 +198,16 @@ function getChapterContentByChapterId(tx, chapter_id) {
         }
        	
        	temp_html+= interaction_temp;
+       	if( chapter_number < chapters_count-1 ) {
+         	 
+     		 temp_html+= '<button type="button" onclick="load_next_chapter(';
+     		 temp_html+= next_chapter;
+	       	 temp_html+= ',';
+	       	 temp_html+= chapter_number+1;
+	       	 temp_html+= ')"> Load Next Chapter';
+	       	 temp_html+= '</button>';
+     	 }
+       	
        	
        	var storyElement = document.getElementById('chapter_content');
        	storyElement.innerHTML = temp_html;
