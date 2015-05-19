@@ -1,4 +1,4 @@
-version = '1.0.3';
+version = '1.0.6';
 
 ////yifei added here
 var story_log_json = null;

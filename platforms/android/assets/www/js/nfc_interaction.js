@@ -1,25 +1,46 @@
 var theMessage;
 var mimeType;
-var story;
 var id;
 var result;
 
 var nfcButton;
 
-function startNFCInteraction(interaction_id, story_id, message)
+function startNFCInteraction(interaction_id)
 {
     result = 0;
-    id = interaction_id;
-    theMessage = message;
-    story = story_id;
-    mimeType = "text/is";
-    nfc.addMimeTypeListener(mimeType, onNFC,onNFCSuccess,onNFCFailure);
-    //nfc.addNdefListener(onNFC, onNFCSuccess, onNFCFailure);
+    id = interaction_id
+    db = window.sqlitePlugin.openDatabase({name: "stories.db"});
+    db.transaction(function(tx){
+        tx.executeSql("SELECT * FROM interactions WHERE interaction_id='"+interaction_id+"'", [], function(tx, res){
+            var new_id = res.rows.item(0).nfc_id;
+                table = 'nfc';
+
+            if(new_id != null)
+            {
+                tx.executeSql('SELECT * FROM '+table+" WHERE "+ table+"_id='"+new_id+"'", [], function(tx, res){
+                   
+                    theMessage = res.rows.item(0).info;
+
+                    mimeType = "text/is";
+                    nfc.addMimeTypeListener(mimeType, onNFC,onNFCSuccess,onNFCFailure);
+                    //nfc.addNdefListener(onNFC, onNFCSuccess, onNFCFailure);
 
 
-    nfcButton = document.getElementById('nfcButton');
-    nfcButton.innerHTML = "Reading..."
-    nfcButton.onclick = function(){};
+                    nfcButton = document.getElementById('nfcButton');
+                    nfcButton.innerHTML = "Reading..."
+                    nfcButton.onclick = function(){};
+
+
+
+
+
+
+                });
+            }   
+        });
+
+    }, errorCB);  
+    
 }
 
 function onNFC(nfcEvent)
@@ -56,17 +77,28 @@ function onNFC(nfcEvent)
         
     if(text_code != theMessage)
     {
-        /*alert("Incorrect tag");
-        give_feedback(id, result); */
-        tempFailure();
+        //alert("Incorrect tag, try again...");
+        nfc.removeMimeTypeListener(mimeType, onNFC);
+        nfcButton.innerHTML = "Start NFC reading";
+        nfcButton.onclick = function(){
+            startNFCInteraction(id);
+        };
+
+        give_feedback(id, result);
+        //tempFailure();
     }
     else
     {
-        /*result = 1;
-        next_chapter();
+        //alert("Congratulations! Correct tag!");
+        nfc.removeMimeTypeListener(mimeType, onNFC);
+        nfcButton.innerHTML = "Start NFC reading";
+        nfcButton.onclick = function(){
+            startNFCInteraction(id);
+        };
+        result = 1;
+        //next_chapter();
         give_feedback(id, result);
-        nfc.removeMimeTypeListener(mimeType, onNFC);*/
-        tempSuccess();
+        //tempSuccess();
     }
     
     
@@ -106,23 +138,4 @@ function onWriteSuccess(result)
 function onWriteFailure(reason)
 {
     alert("Failed writing NFC tag");
-}
-
-
-function tempSuccess(){
-    alert("Congratulations! Correct tag!");
-    nfc.removeMimeTypeListener(mimeType, onNFC);
-    nfcButton.innerHTML = "Start NFC reading";
-    nfcButton.onclick = function(){
-        startNFCInteraction(1,1, "This is the code");
-    };
-}
-
-function tempFailure(){
-    alert("Incorrect tag, try again...");
-    nfc.removeMimeTypeListener(mimeType, onNFC);
-    nfcButton.innerHTML = "Start NFC reading";
-    nfcButton.onclick = function(){
-        startNFCInteraction(1,1, "This is the code");
-    };
 }

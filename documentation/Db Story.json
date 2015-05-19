@@ -18,13 +18,13 @@
 			"video_url": "http://www.[...]",
 			"image_url": "http://www.[...]",
 			"audio_url": "http://www.[...]",
-			"instructions": "Instructions to make the interaction",
+			"instructions": "Instructions to make the interaction 1",
 			"interaction": {
 				"interaction_id" : "1",
 				"id":"1",
 				"type": 1,
 				"info": "Information on the tag",
-				"instructions": "Search for [...]",
+				"instructions": "Search for [...] tag",
 				"feedback_right": "Perfect! You found it!",
 				"feedback_wrong": "Oops! Try again..."
 			}
@@ -42,7 +42,7 @@
 				"id":"1",
 				"type": 2,
 				"info": "Information of the QR code",
-				"instructions": "Search for [...]",
+				"instructions": "Search for [...] qr code",
 				"feedbackurl_right": "http://www.[...]",
 				"feedbackurl_wrong": "http://www.[...]"
 			}
@@ -61,7 +61,7 @@
 				"type": 3,
 				"latitude": 65.0506489,
 				"longitude": 25.4746943,
-				"instructions": "Search for [...]",
+				"instructions": "Search for [...] location",
 				"feedback_right": "Perfect! You found it!",
 				"feedback_wrong": "Oops! Try again..."
 			}
@@ -79,7 +79,7 @@
 				"id":"1",
 				"type": 4,
 				"phrase": "Phrase or word to spell check",
-				"instructions": "Search for [...]",
+				"instructions": "Please spell",
 				"feedback_right": "Perfect spelling!",
 				"feedback_wrong": "Oops! Try again..."
 			}
