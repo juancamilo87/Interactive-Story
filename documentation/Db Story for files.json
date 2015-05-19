@@ -1,0 +1,68 @@
+{
+	"story_id":"1",
+	"name": "First Story",
+	"description": "The is the first story we are creating for test purposes",
+	"author":{
+				"author_id": 1,
+				"name": "John",
+				"lastname": "Milton",
+				"email": "jmilton@milton.com",
+				"website": "https://www.[...]"
+			},
+	"chapters": [
+		{
+			"chapter_id" : "1",
+			"number": 1,
+			"name": "Prologue",
+			"body": "This is the first part of the story. Everything [...]",
+			"image_url": "http://www.avaya.com/blogs/archives/anykey.jpg",
+			"audio_url": "http://www.noiseaddicts.com/samples/276.mp3",
+			"instructions": "Instructions to make the interaction",
+			"interaction": {
+				"interaction_id" : "1",
+				"id":"1",
+				"type": 1,
+				"info": "Information on the tag",
+				"instructions": "Search for [...]",
+				"feedback_right": "Perfect! You found it!",
+				"feedback_wrong": "Oops! Try again..."
+			}
+		},
+		{
+			"chapter_id" : "2",
+			"number": 2,
+			"name": "The beginning",
+			"body": "This is the second chapter [...]",
+			"video_url": "http://techslides.com/demos/sample-videos/small.mp4",
+			"audio_url": "http://www.noiseaddicts.com/samples/2553.mp3",
+			"interaction": {
+				"interaction_id" : "2",
+				"id":"1",
+				"type": 2,
+				"info": "Information of the QR code",
+				"instructions": "Search for [...]",
+				"feedbackurl_right": "http://www.noiseaddicts.com/samples/61.mp3",
+				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples/55.mp3"
+			}
+		},
+		{
+			"chapter_id" : "10",
+			"number": 3,
+			"name": "The beginning",
+			"body": "This is the second chapter [...]",
+			"video_url": "http://techslides.com/demos/sample-videos/small.mp4",
+			"audio_url": "http://www.noiseaddicts.com/samples/2553.mp3",
+			"interaction": {
+				"interaction_id" : "10",
+				"id":"4",
+				"type": 2,
+				"info": "Information of the QR code",
+				"instructions": "Search for [...]",
+				"feedback_right": "Perfect! You found it!",
+				"feedback_wrong": "Oops! Try again...",
+				"feedbackurl_right": "http://www.noiseaddicts.com/samples/61.mp3",
+				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples/55.mp3"
+			}
+		}
+	]
+}

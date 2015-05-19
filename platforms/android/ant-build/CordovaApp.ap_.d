@@ -117,8 +117,10 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\log
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\test.wav \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\img\test1.mp3 \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\app.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\download.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\file_chooser.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\GPSlocation-bkp.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\GPSlocation.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\index.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\navigate.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\js\nfc_interaction.js \
@@ -132,6 +134,7 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.phonegap.plugins.barcodescanner \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.device \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.media \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\com.brodysoft.sqlitePlugin\www\SQLitePlugin.js \
@@ -166,6 +169,9 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file\www\requestFileSystem.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file\www\resolveLocalFileSystemURI.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file\www\android\FileSystem.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www\FileTransfer.js \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.file-transfer\www\FileTransferError.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.media\www \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.media\www\Media.js \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\assets\www\plugins\org.apache.cordova.media\www\MediaError.js \
