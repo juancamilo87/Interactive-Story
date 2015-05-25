@@ -206,6 +206,13 @@ module.exports = [
         "clobbers": [
             "window.FileTransfer"
         ]
+    },
+    {
+        "file": "plugins/com.bridge.open/www/bridge.open.js",
+        "id": "com.bridge.open.Open",
+        "merges": [
+            "cordova.plugins.bridge"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -220,7 +227,8 @@ module.exports.metadata =
     "org.apache.cordova.file": "1.3.3",
     "org.apache.cordova.geolocation": "0.3.12",
     "org.apache.cordova.media": "0.2.16",
-    "org.apache.cordova.file-transfer": "0.5.0"
+    "org.apache.cordova.file-transfer": "0.5.0",
+    "com.bridge.open": "0.6.0"
 }
 // BOTTOM OF METADATA
 });

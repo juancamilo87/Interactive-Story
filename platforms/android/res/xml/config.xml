@@ -20,6 +20,9 @@
     <feature name="FileTransfer">
         <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature>
+    <feature name="Open">
+        <param name="android-package" value="com.bridge.Open" />
+    </feature>
     <feature name="NfcPlugin">
         <param name="android-package" value="com.chariotsolutions.nfc.plugin.NfcPlugin" />
         <param name="onload" value="true" />
@@ -27,6 +30,10 @@
     <feature name="FileChooser">
         <param name="android-package" value="com.megster.cordova.FileChooser" />
     </feature>
+    <icon density="ldpi" src="www/icon/android/ldpi.png" />
+    <icon density="mdpi" src="www/icon/android/mdpi.png" />
+    <icon density="hdpi" src="www/icon/android/hdpi.png" />
+    <icon density="xhdpi" src="www/icon/android/xhdpi.png" />
     <name>Interactive Story</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

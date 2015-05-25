@@ -19,6 +19,12 @@
 var app = {
     // Application Constructor
     initialize: function() {
+      // console.log("Binding");
+      // $(document).bind('pagechange', function() {
+      //   console.log("Refresh started");
+      // $('.ui-page-active .ui-listview').listview('refresh');
+      // console.log("Refresh done");
+      // });
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -33,9 +39,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-    	
+
+      
     	//app.populateDb();
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {

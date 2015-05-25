@@ -1,4 +1,5 @@
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes.dex : \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\bridge\Open.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin$1.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin$2.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\com\chariotsolutions\nfc\plugin\NfcPlugin$3.class \
@@ -89,6 +90,7 @@ C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\apache\cordova\media\AudioPlayer$STATE.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\apache\cordova\media\AudioPlayer.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\apache\cordova\media\FileHelper.class \
+C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\apache\cordova\videoplayer\VideoPlayer.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\pgsqlite\SQLitePlugin$1.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\pgsqlite\SQLitePlugin$Action.class \
 C:\Users\JuanCamilo\Documents\Oulu\SP\story\platforms\android\ant-build\classes\org\pgsqlite\SQLitePlugin$DBQuery.class \

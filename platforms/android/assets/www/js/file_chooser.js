@@ -40,7 +40,7 @@ function choose_file() {
      
     });
     
-    return false;
+    return true;
 }
 
 function cbSuccess(fileEntry)
