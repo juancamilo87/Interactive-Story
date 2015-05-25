@@ -101,6 +101,10 @@
                         {
                             "xml": "<feature name=\"FileTransfer\"><param name=\"android-package\" value=\"org.apache.cordova.filetransfer.FileTransfer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Open\"><param name=\"android-package\" value=\"com.bridge.Open\" /></feature>",
+                            "count": 1
                         }
                     ],
                     "/widget": [
@@ -628,6 +632,9 @@
             "PACKAGE_NAME": "fi.oulu.story"
         },
         "org.apache.cordova.file-transfer": {
+            "PACKAGE_NAME": "fi.oulu.story"
+        },
+        "com.bridge.open": {
             "PACKAGE_NAME": "fi.oulu.story"
         }
     },

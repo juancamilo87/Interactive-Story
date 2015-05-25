@@ -1,0 +1,25 @@
+{
+    "version": "0.6.0",
+    "name": "com.bridge.open",
+    "cordova_name": "Open",
+    "description": "Open audio, video, images and more with applications installed on the user's device",
+    "license": "GPLv2",
+    "repo": "https://github.com/disusered/cordova-open",
+    "issue": "https://github.com/disusered/cordova-open/issues",
+    "keywords": [
+        "cordova",
+        "file",
+        "open",
+        "intent",
+        "video",
+        "audio",
+        "image",
+        "photo",
+        "pdf"
+    ],
+    "platforms": [
+        "android",
+        "ios"
+    ],
+    "engines": []
+}
