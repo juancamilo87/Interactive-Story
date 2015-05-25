@@ -16,4 +16,10 @@
     <feature name="Console"> <param name="ios-package" value="CDVLogger" /> </feature>
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
+    <platform name="android">
+              <icon src="www/icon/android/ldpi.png" density="ldpi" />
+              <icon src="www/icon/android/mdpi.png" density="mdpi" />
+              <icon src="www/icon/android/hdpi.png" density="hdpi" />
+              <icon src="www/icon/android/xhdpi.png" density="xhdpi" />
+     </platform>
 </widget>
