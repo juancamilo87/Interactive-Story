@@ -26,15 +26,6 @@ function startNFCInteraction(interaction_id)
                     //nfc.addNdefListener(onNFC, onNFCSuccess, onNFCFailure);
 
 
-                    nfcButton = document.getElementById('nfcButton');
-                    nfcButton.innerHTML = "Reading..."
-                    nfcButton.onclick = function(){};
-
-
-
-
-
-
                 });
             }   
         });
@@ -60,13 +51,11 @@ function onNFC(nfcEvent)
     */
     //Read nfc message and compare
     console.log(JSON.stringify(nfcEvent.tag));
-    var payload_story = nfcEvent.tag.ndefMessage[0].payload;
+    var payload_message = nfcEvent.tag.ndefMessage[0].payload;
     //If from mimetype without substring
-    var text_story = nfc.bytesToString(payload_story);
-    var payload_message = nfcEvent.tag.ndefMessage[1].payload;
-    var text_code = nfc.bytesToString(payload_message).substring(3);
-    //console.log(text_code);
-    //console.log(theMessage);
+    var text_code = nfc.bytesToString(payload_message);
+    console.log(text_code);
+    console.log(theMessage);
 
     /*if(text_story != story)
     {
@@ -91,6 +80,9 @@ function onNFC(nfcEvent)
     {
         //alert("Congratulations! Correct tag!");
         nfc.removeMimeTypeListener(mimeType, onNFC);
+        nfcButton = document.getElementById('nfcButton');
+        $('#nfcButton').text("Start NFC reading"); 
+        $('#nfcButton').parent().find('span span').html('Start NFC reading');
         nfcButton.innerHTML = "Start NFC reading";
         nfcButton.onclick = function(){
             startNFCInteraction(id);
@@ -122,6 +114,10 @@ function onNFC(nfcEvent)
 
 function onNFCSuccess(result)
 {
+    nfcButton = document.getElementById('nfcButton');
+    $('#nfcButton').text("Reading..."); 
+    $('#nfcButton').parent().find('span span').html('Reading...');
+    nfcButton.onclick = function(){};
     console.log("Listening for NFC Messages");
 }
 

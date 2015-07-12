@@ -40,10 +40,12 @@
 				"interaction_id" : "2",
 				"id":"1",
 				"type": 2,
-				"info": "Information of the QR code",
+				"info": "http://fr.wikipedia.org/",
 				"instructions": "Search for [...]",
-				"feedbackurl_right": "http://www.noiseaddicts.com/samples/61.mp3",
-				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples/55.mp3"
+				"feedbackurl_right": "http://www.noiseaddicts.com/samples_1w72b820/95.mp3",
+				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples_1w72b820/95.mp3",
+				"feedback_right": "Good!",
+				"feedback_wrong": "Oops! Try again..."
 			}
 		},
 		{
@@ -69,8 +71,8 @@
 				"instructions": "Search for [...]",
 				"feedback_right": "Perfect! You found it!",
 				"feedback_wrong": "Oops! Try again...",
-				"feedbackurl_right": "http://www.noiseaddicts.com/samples/61.mp3",
-				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples/55.mp3"
+				"feedbackurl_right": "http://www.noiseaddicts.com/samples_1w72b820/95.mp3",
+				"feedbackurl_wrong": "http://www.noiseaddicts.com/samples_1w72b820/95.mp3"
 			}
 		}
 	]

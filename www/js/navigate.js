@@ -4,6 +4,10 @@ var db;
 var chapters = [];
 var applicationStorageDirectory;
 
+var global_chapter;
+var global_next_chapter;
+var global_chapter_number;
+
 function reload_chapter(){
 //Reload HTML with current_chapter variable querying database
 	
@@ -152,7 +156,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 			        
 			        var temp_html = "";
 					var next_chapter = chapters[chapter_number+1];
-			  	 
+					
 			  	 	//Insert chapter Title
 
 			  	 	temp_html+= '<p style="text-align:center; font-size:200%; color:#FF6600" class="serif"><b>'+results.rows.item(0).name+'</b></p>';
@@ -371,6 +375,8 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 								      //  	temp_html+= chapter_number+1;
 								      //  	temp_html+= '); return true;"> Load Next Chapter';
 								      //  	temp_html+= '</a>';
+								      	global_next_chapter = next_chapter;
+					  					global_chapter_number = chapter_number;
 										console.log("Adding next chapter button");
 										temp_html+= '<button type="button" onclick="load_next_chapter(';
 										temp_html+= next_chapter;
@@ -415,7 +421,8 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 					  //      	temp_html+= chapter_number+1;
 					  //      	temp_html+= '); return true;"> Load Next Chapter';
 					  //      	temp_html+= '</a>';
-
+					  		global_next_chapter = next_chapter;
+					  		global_chapter_number = chapter_number;
 							console.log("Adding next chapter button");
 							temp_html+= '<button type="button" onclick="load_next_chapter(';
 							temp_html+= next_chapter;
@@ -459,6 +466,7 @@ function successChapter()
 	$('#chapter_content').trigger('create');
     console.log('success chapter');
 }
+
 function successJsonCB() 
 {
     console.log('success');
@@ -539,7 +547,7 @@ function give_feedback(interaction_id, result)
 
 							if(feedback_text != null)
 							{
-								display_text_feedback(feedback_text);
+								display_text_feedback(feedback_text, result);
 							}
 						});
 					}
@@ -550,12 +558,37 @@ function give_feedback(interaction_id, result)
 }
 
 //feedback is the text to be displayed
-function display_text_feedback(feedback)
+function display_text_feedback(feedback, result)
 {
 	$.mobile.changePage( $("#feedback-dialog"), { role: "dialog", transition: "pop"} );	
 
 	$("#feedback_content").text(feedback);
 
+	if(result == 1)
+	{
+		$("#feedback_link").attr('onclick','return next_chapter_from_feedback('+global_next_chapter+','+global_chapter_number+');');
+		$("#feedback_link").attr('href','#');
+	}
+	else
+	{
+		$("#feedback_link").attr('onclick','goBack()');
+		$("#feedback_link").attr('href','#');
+	}
+	
+}
+
+function goBack(){
+	console.log("go back");
+	history.back();
+	return false;
+}
+
+function next_chapter_from_feedback(the_chapter,the_chapter_number)
+{
+	console.log("next chapter from feedback");
+	load_next_chapter(the_chapter,the_chapter_number+1);
+	history.back();
+	return false;
 }
 
 function play_audio_feedback(story_id, chapter_number, interaction_result, file_name)
