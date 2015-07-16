@@ -304,12 +304,21 @@ function download_stories()
 {
     $.ajax({
           type: "GET",
-          dataType: "json",
-          url: "http://ip.jsontest.com",
+          dataType: "text",
+          url: "http://memoryhelper.netne.net/interactivestory/index.php/stories/get_all_stories",
           success: function( data ) {
-                console.log(JSON.stringify(data));
-                //Iterate over stories to get internal JSON
-                //Call populate_db_from_json(story_json) with the internal JSON
+            var new_data = data.split('<!-- Hosting24 Analytics Code -->');
+
+            data = '{"stories": ' + new_data[0] + "}";
+            jsonObject = JSON.parse(data);
+
+            //console.log(JSON.stringify(jsonObject));
+            allStories = jsonObject.stories;
+            populate_db_from_json_online(allStories);
+            
+
+            //Iterate over stories to get internal JSON
+            //Call populate_db_from_json(story_json) with the internal JSON
             },
           error: function(data, textStatus, errorThrown) {
                 console.log('Error');
@@ -318,4 +327,145 @@ function download_stories()
                 console.log('Error: ' + errorThrown);
             }
     });
+}
+
+function populate_db_from_json_online(story_json)
+{
+    current_story_json = story_json;
+    db = window.sqlitePlugin.openDatabase({name: "stories.db"});
+    db.transaction(populateFromJsonDBOnline, errorJsonCBstoriesOnline, successJsonCBstoriesOnline);
+    
+
+    
+}
+
+function populateFromJsonDBOnline(tx)
+{
+    for(var i=0;i<current_story_json.length;i++){
+                //console.log(i+"");
+                var story_json = current_story_json[i];
+                //populating authors.
+        console.log("Story "+i);
+        console.log("authors length: "+ story_json.authors.length);
+        if(0 <story_json.authors.length)
+        {
+            var authorJson = story_json.authors[0];
+
+            tx.executeSql("INSERT INTO authors (author_id, name, lastname, email, website) VALUES (?,?,?,?,?)", [authorJson.author_id, authorJson.first_name, authorJson.last_name, authorJson.email, authorJson.website]);    
+
+            //populating the stories
+            tx.executeSql("INSERT INTO stories (story_id, name, description, author_id) VALUES (?,?,?,?)", [story_json.story_id, story_json.story_title, story_json.story_summary, authorJson.author_id]);
+
+            //populating the chapters.
+            var chaptersJson = story_json.chapters;
+
+            $.each(chaptersJson, function(idx, objChapter) {
+
+                //Start download of urls
+                //var fileName = url.substring(url.lastIndexOf('/')+1);
+                
+                var video_name;
+                if(objChapter.video_url != null)
+                {
+                    video_name = objChapter.video_url.substring(objChapter.video_url.lastIndexOf('/')+1);
+                }
+                var image_name;
+                if(objChapter.image_url != null)
+                {
+                    image_name = objChapter.image_url.substring(objChapter.image_url.lastIndexOf('/')+1);
+                }
+                var audio_name;
+                if(objChapter.audio_url != null)
+                {
+                    audio_name = objChapter.audio_url.substring(objChapter.audio_url.lastIndexOf('/')+1);
+                }
+
+                if(objChapter.video_url != null)
+                {
+                    download_file(objChapter.video_url, story_json.story_id, objChapter.number, 0,0);
+                }
+                if(objChapter.image_url != null)
+                {
+                    download_file(objChapter.image_url, story_json.story_id, objChapter.number, 1,0);
+                }
+                if(objChapter.audio_url != null)
+                {
+                    download_file(objChapter.audio_url, story_json.story_id, objChapter.number, 2,0);
+                }
+
+
+                if(objChapter.interaction_id != null)
+                {
+                    //Start download of interaction urls
+
+                    var feedback_right_name = null;
+                    if(objChapter.positive_audio_url != null)
+                    {
+                        feedback_right_name = objChapter.positive_audio_url.substring(objChapter.positive_audio_url.lastIndexOf('/')+1);
+                    }
+
+                    var feedback_wrong_name;
+                    if(objChapter.negative_audio_url != null)
+                    {
+                        feedback_wrong_name = objChapter.negative_audio_url.substring(objChapter.negative_audio_url.lastIndexOf('/')+1);;
+                    }
+
+                    if(objChapter.positive_audio_url != null)
+                    {
+                        download_file(objChapter.positive_audio_url, story_json.story_id, objChapter.number, 0,1);
+                    }
+                    if(objChapter.negative_audio_url != null)
+                    {
+                        download_file(objChapter.negative_audio_url, story_json.story_id, objChapter.number, 1,1);
+                    }
+                    var inter_type = objChapter.interaction_type;
+
+                    if( inter_type == "1" ) {
+                        tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.nfc_id, objChapter.info, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                        tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, nfc_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.nfc_id]);  
+                    } else if ( inter_type == "2" ) {
+                        tx.executeSql("INSERT INTO qr (qr_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.qr_id, objChapter.info, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                        tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, qr_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.qr_id]);
+                    } else if (inter_type == "3") {
+                        tx.executeSql("INSERT INTO gps (gps_id, latitude, longitude, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?)", [objChapter.gps_id, objChapter.latitude, objChapter.longitude, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback, feedback_right_name, feedback_wrong_name]);  
+                        tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, gps_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.gps_id]);  
+                    } else if (inter_type == "4") { 
+                        tx.executeSql("INSERT INTO spell (spell_id, phrase, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.spell_id, objChapter.phrase, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                        tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, spell_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.spell_id]);  
+                    } else if (inter_type == "5") {
+                        tx.executeSql("INSERT INTO quiz (quiz_id, question, correct_answer, answer_1, answer_2, answer_3, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.quiz_id, objChapter.question, objChapter.correct_answer, objChapter.answer_1, objChapter.answer_2, objChapter.answer_3, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                        tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, quiz_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.quiz_id]);  
+                    }
+                    
+                    var int_id = objChapter.interaction_id;
+                    tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, interaction_id, instructions) VALUES (?,?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.title, objChapter.text, video_name, image_name, audio_name, int_id, objChapter.instructions]);  
+                }
+                else
+                {
+                 tx.executeSql("INSERT INTO chapters (chapter_id, story_id, number, name, body, video_path, image_path, audio_path, instructions) VALUES (?,?,?,?,?,?,?,?,?)", [objChapter.chapter_id, story_json.story_id, objChapter.number, objChapter.title, objChapter.text, video_name, image_name, audio_name]);     
+                }
+
+            });
+            console.log("Story "+i+" loaded");
+        }
+        else
+        {
+            console.log("Story "+i+" not loaded story");
+            //throw "No author so no story stored";
+        }
+    }
+    
+    
+}
+
+function successJsonCBstoriesOnline() 
+{
+    console.log('One story succesfully loaded');
+}
+
+function errorJsonCBstoriesOnline(err)
+{
+    console.log('Error: ' + err);
+    console.log('Error Message: ' + err.message);
+    console.log('Error Code: ' + err.code);
 }
