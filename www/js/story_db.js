@@ -344,8 +344,8 @@ function populateFromJsonDBOnline(tx)
     for(var i=0;i<current_story_json.length;i++){
                 //console.log(i+"");
                 var story_json = current_story_json[i];
-                if(story_json.story_id=='30')
-                {
+                // if(story_json.story_id=='30')
+                // {
                     //populating authors.
                     console.log("Story "+i);
                     console.log("authors length: "+ story_json.authors.length);
@@ -406,7 +406,8 @@ function populateFromJsonDBOnline(tx)
                                 var inter_type = objChapter.interaction_type;
 
                                 if( inter_type == "2" ) {
-                                    tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.nfc_id, objChapter.info, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                                    tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.nfc_id, "This is the correct tag.", objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
+                                    // tx.executeSql("INSERT INTO nfc (nfc_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.nfc_id, objChapter.info, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
                                     tx.executeSql("INSERT INTO interactions (interaction_id, interaction_type, nfc_id) VALUES (?,?,?)", [objChapter.interaction_id, objChapter.interaction_type, objChapter.nfc_id]);  
                                 } else if ( inter_type == "3" ) {
                                     tx.executeSql("INSERT INTO qr (qr_id, info, instructions, feedback_right, feedback_wrong, audiopath_right, audiopath_wrong) VALUES (?,?,?,?,?,?,?)", [objChapter.qr_id, objChapter.info, objChapter.instructions, objChapter.positive_feedback, objChapter.negative_feedback,feedback_right_name,feedback_wrong_name]);  
@@ -438,7 +439,7 @@ function populateFromJsonDBOnline(tx)
                         console.log("Story "+i+" not loaded story");
                         //throw "No author so no story stored";
                     }
-                }
+                // }
                 
     }
     
@@ -448,6 +449,7 @@ function populateFromJsonDBOnline(tx)
 function successJsonCBstoriesOnline() 
 {
     console.log('One story succesfully loaded');
+    alert('Stories succesfully downloaded');
 }
 
 function errorJsonCBstoriesOnline(err)
@@ -455,4 +457,5 @@ function errorJsonCBstoriesOnline(err)
     console.log('Error: ' + err);
     console.log('Error Message: ' + err.message);
     console.log('Error Code: ' + err.code);
+    alert('Error downloading stories, please verify your internet connection and try again.');
 }
