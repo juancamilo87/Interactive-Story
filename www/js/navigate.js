@@ -219,27 +219,27 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 				        	var interaction_type = res.rows.item(0).interaction_type;
 				        	var interaction_inner_id;
 				        	var table;
-				        	if(interaction_type == 1)
+				        	if(interaction_type == 2)
 							{
 								interaction_inner_id = res.rows.item(0).nfc_id;
 								table = 'nfc';
 							}
-							else if(interaction_type == 2)
+							else if(interaction_type == 3)
 							{
 								interaction_inner_id = res.rows.item(0).qr_id;
 								table = 'qr';
 							}
-							else if(interaction_type == 3)
+							else if(interaction_type == 1)
 							{
 								interaction_inner_id = res.rows.item(0).gps_id;
 								table = 'gps';
 							}
-							else if(interaction_type == 4)
+							else if(interaction_type == 5)
 							{
 								interaction_inner_id = res.rows.item(0).spell_id;
 								table = 'spell';
 							}
-							else if(interaction_type == 5)
+							else if(interaction_type == 4)
 							{
 								interaction_inner_id = res.rows.item(0).quiz_id;
 								table = 'quiz';
@@ -255,7 +255,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 					       	
 					       			var interaction_temp = "";
 					       	 		
-					       			if(interaction_type == 1)
+					       			if(interaction_type == 2)
 					       			{
 										//NFC
 							       		console.log("Filling nfc interaction");
@@ -271,7 +271,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 										interaction_temp += '<br/>';
 										interaction_temp += ' </div>';
 									}
-									else if(interaction_type == 2)
+									else if(interaction_type == 3)
 									{
 										//QR
 							        	console.log("Filling qr interaction");
@@ -285,7 +285,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 							        	interaction_temp += '<br/>';
 							        	interaction_temp += '<div id="qrResult">testing</div>';
 									}
-									else if(interaction_type == 3)
+									else if(interaction_type == 1)
 									{
 										//GPS
 							        	console.log("Filling gps interaction");
@@ -303,7 +303,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 							            interaction_temp += ' <div id="locationDiv">';
 							            interaction_temp += ' </div>';
 									}
-									else if(interaction_type == 4)
+									else if(interaction_type == 5)
 									{
 										//Spell_check
 							       		console.log("Filling spell check interaction");
@@ -323,7 +323,7 @@ function getChapterContentByChapterId(tx, chapter_id, chapter_number) {
 							       		interaction_temp += '<div id="result">';
 							       		interaction_temp += ' </div>';
 									}
-									else if(interaction_type == 5)
+									else if(interaction_type == 4)
 									{
 										//Quiz
 							       		console.log("Filling quiz interaction");
@@ -494,27 +494,27 @@ function give_feedback(interaction_id, result)
 			var interaction_type = res.rows.item(0).interaction_type;
 			var id;
 			var table;
-			if(interaction_type == 1)
+			if(interaction_type == 2)
 			{
 				id = res.rows.item(0).nfc_id;
 				table = 'nfc';
 			}
-			else if(interaction_type == 2)
+			else if(interaction_type == 3)
 			{
 				id = res.rows.item(0).qr_id;
 				table = 'qr';
 			}
-			else if(interaction_type == 3)
+			else if(interaction_type == 1)
 			{
 				id = res.rows.item(0).gps_id;
 				table = 'gps';
 			}
-			else if(interaction_type == 4)
+			else if(interaction_type == 5)
 			{
 				id = res.rows.item(0).spell_id;
 				table = 'spell';
 			}
-			else if(interaction_type == 5)
+			else if(interaction_type == 4)
 			{
 				id = res.rows.item(0).quiz_id;
 				table = 'quiz';
